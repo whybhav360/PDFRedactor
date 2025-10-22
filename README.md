@@ -1,68 +1,75 @@
-🔒 PDF Redaction Tool
 
-A Streamlit-based web application that allows you to securely redact sensitive information from PDF files.
-It supports native text redaction as well as OCR-based detection, ensuring that even scanned documents are thoroughly sanitized.
 
-🚀 Features
+# 🔒 PDF Redaction Tool
 
-Keyword-based Redaction: Enter one or more keywords to automatically detect and redact them.
+A **Streamlit-based web application** that allows you to securely redact sensitive information from PDF files.  
+It supports both **native text redaction** and **OCR-based detection**, ensuring even scanned documents are permanently sanitized — not just visually hidden.
 
-Dual Detection Method:
+---
 
-Native PDF text search.
+## 🚀 Features
 
-OCR (Optical Character Recognition) using Tesseract for scanned PDFs or images.
+✅ **Keyword-based Redaction**
+- Enter one or more keywords to automatically detect and redact them.
+- Works across both text-based and scanned PDFs.
 
-Dynamic Keyword Management:
+✅ **Real Redaction (Non-selectable)**
+- Permanently deletes sensitive text and image data instead of simply overlaying black boxes.
+- Prevents users from copying or extracting hidden text from the PDF.
 
-Add keywords quickly via an input field.
+✅ **Dual Detection Method**
+- **Native PDF text search** for standard documents.  
+- **OCR (Optical Character Recognition)** using Tesseract for image-based PDFs or scanned pages.
 
-Remove keywords using clickable ❌ chips.
+✅ **Dynamic Keyword Management**
+- Add keywords quickly via an input field.
+- Remove keywords using clickable ❌ chips.
 
-High-resolution OCR Processing:
+✅ **High-resolution OCR Processing**
+- Uses 300 DPI rendering for precise OCR bounding boxes and accurate keyword detection.
 
-Uses 300 DPI rendering for precise OCR bounding boxes.
+✅ **Progress Tracking**
+- Real-time progress bar updates while processing large PDFs.
 
-Progress Tracking:
+✅ **Instant Download**
+- Download the fully redacted and sanitized PDF directly from your browser.
 
-Real-time progress bar while processing large PDFs.
+---
 
-Instant Download:
+## 🛠️ Tech Stack
 
-Download the final redacted PDF directly from the browser.
+- **Python 3.8+**
+- **Streamlit** – Web app interface  
+- **PyMuPDF (fitz)** – PDF manipulation and redaction  
+- **Pillow (PIL)** – Image handling  
+- **Tesseract OCR** – OCR engine for scanned PDFs  
+- **pytesseract** – Python wrapper for Tesseract  
 
-🛠️ Tech Stack
+---
 
-Python 3.8+
+## 📂 Project Structure
 
-Streamlit
- – Web app interface
+```
 
-PyMuPDF (fitz)
- – PDF manipulation and redaction
-
-Pillow (PIL)
- – Image handling
-
-Tesseract OCR
- – OCR for scanned PDFs
-
-pytesseract
- – Python wrapper for Tesseract
-
-📂 Project Structure
 pdf-redactor/
 │
 ├── app.py              # Main Streamlit app
 ├── requirements.txt    # Python dependencies
 └── README.md           # Documentation
 
-⚙️ Installation & Setup
-1. Clone the Repository
+````
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+```bash
 git clone https://github.com/whybhav360/PDFRedactor.git
 cd pdf-redactor
+````
 
-2. Create Virtual Environment
+### 2. Create a Virtual Environment
+
+```
 # Windows
 python -m venv venv
 venv\Scripts\activate
@@ -70,101 +77,128 @@ venv\Scripts\activate
 # Mac/Linux
 python3 -m venv venv
 source venv/bin/activate
+```
 
-3. Install Dependencies
+### 3. Install Dependencies
+
+```
 pip install -r requirements.txt
+```
+```
+** `requirements.txt`:**
 
-
-Example requirements.txt:
-
+```
 streamlit
 pymupdf
 pillow
 pytesseract
+```
+```
+### 4. Install Tesseract
+```
+**Windows:**
 
-4. Install Tesseract
-
-Windows:
-Download here
- and install.
-Default path used in code:
-
-C:\Program Files\Tesseract-OCR\tesseract.exe
+* [Download here](https://github.com/tesseract-ocr/tesseract)
+* Default install path used in the code:
 
 
-Mac (Homebrew):
+  C:\Program Files\Tesseract-OCR\tesseract.exe
+**Mac (Homebrew):**
 
+```bash
 brew install tesseract
+```
 
-5. Run the Application
+### 5. Run the Application
+
+```
 streamlit run app.py
+```
 
-💻 Usage
+---
 
-Upload PDF:
+## 💻 Usage
+
+### 1. Upload PDF
+
 Drag and drop your PDF file into the uploader.
 
-Enter Keywords:
+### 2. Enter Keywords
 
-Type a keyword (e.g., password, confidential) and press Enter.
-
+Type a keyword (e.g., `password`, `confidential`) and press **Enter**.
 Repeat for multiple keywords.
+Remove any keyword by clicking ❌ on its chip.
 
-Remove keywords by clicking ❌ on each chip.
+### 3. Start Redaction
 
-Start Redaction:
-
-Click 🚀 Start Redaction.
-
+Click 🚀 **Start Redaction** to begin the process.
 Wait for the progress bar to complete.
 
-Download Result:
+### 4. Download Result
 
-Once done, click 📥 Download Redacted PDF.
+Once done, click 📥 **Download Redacted PDF** to save your sanitized file.
 
-🔐 How It Works
+---
 
-Native Text Search:
+## 🔐 How It Works
 
-Searches for exact keyword matches in the PDF text layer.
+### 🧩 Native Text Search
 
-Redacts them with black boxes.
+* Scans the PDF’s text layer for matches (case-insensitive).
+* Applies redaction annotations with solid black fill.
+* **Deletes** the underlying text to prevent selection or extraction.
 
-OCR Processing:
+### 🧠 OCR Processing
 
-Converts each page to an image at 300 DPI.
+* Converts each page to a 300 DPI image.
+* Runs Tesseract OCR to detect visible text on scanned or image-based pages.
+* Maps bounding boxes to PDF coordinates.
+* Blackens and removes those areas permanently.
 
-Runs Tesseract OCR to detect text.
+### 🏁 Output
 
-Matches detected words with your keywords.
+* Produces a new PDF where all sensitive data is **irreversibly removed**.
+* Text cannot be selected, copied, or recovered — ensuring total privacy.
 
-Maps bounding boxes to original PDF coordinates.
+---
 
-Redacts matched regions.
+## ⚡ Example
 
-Output:
+| Step                      | Screenshot        |
+| ------------------------- | ----------------- |
+| Upload PDF & Add Keywords | (screenshot here) |
+| Processing in Progress    | (screenshot here) |
+| Download Redacted PDF     | (screenshot here) |
 
-Saves a new PDF with all sensitive data permanently removed.
+---
 
-⚡ Example
-Step	Screenshot
-Upload PDF & Add Keywords	(screenshot here)
-Processing in Progress	(screenshot here)
-Download Redacted PDF	(screenshot here)
-🌱 Future Improvements
+## 🌱 Future Improvements
 
- Fuzzy matching for similar keywords (e.g., passwrd vs password).
+* Fuzzy matching for similar keywords (e.g., `passwrd` → `password`).
+* Multi-language OCR support.
+* Batch (bulk) PDF processing.
+* Optional cloud deployment mode.
 
- Support for multi-language OCR.
+---
 
- Bulk PDF processing.
+## ❗ Important Notes
 
- Cloud deployment option.
+* **Redacted areas are permanently removed** — keep a backup of your original PDF before processing.
+* OCR accuracy depends on the quality of the scanned document.
+* Ensure Tesseract is correctly installed and configured for your operating system.
 
-❗ Important Notes
+---
 
-Redacted areas cannot be recovered, so keep a backup of the original PDF.
+## 🧠 Update Summary (October 2025)
 
-OCR accuracy depends on the quality of the scanned PDF.
+* 🔥 **Real redaction logic added** — text is now **permanently deleted**, not just covered.
+* 🧾 Enhanced **regex search** for better keyword matching.
+* 🧍‍♂️ Improved **OCR precision** with DPI scaling and coordinate correction.
+* ⚡ Optimized processing loop for faster performance.
+* 🧹 Clean memory handling and compressed final output for smaller PDF size.
 
-Ensure Tesseract is installed and correctly configured for your OS.
+---
+
+> Built with ❤️ by [Vaibhav Madaan](https://github.com/whybhav360)
+
+```
