@@ -162,16 +162,6 @@ Once done, click 📥 **Download Redacted PDF** to save your sanitized file.
 
 ---
 
-## ⚡ Example
-
-| Step                      | Screenshot        |
-| ------------------------- | ----------------- |
-| Upload PDF & Add Keywords | (screenshot here) |
-| Processing in Progress    | (screenshot here) |
-| Download Redacted PDF     | (screenshot here) |
-
----
-
 ## 🌱 Future Improvements
 
 * Fuzzy matching for similar keywords (e.g., `passwrd` → `password`).
@@ -202,3 +192,4 @@ Once done, click 📥 **Download Redacted PDF** to save your sanitized file.
 > Built with ❤️ by [Vaibhav Madaan](https://github.com/whybhav360)
 
 ```
+
