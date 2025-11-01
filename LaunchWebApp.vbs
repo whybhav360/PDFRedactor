@@ -1,17 +1,37 @@
 Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run "cmd /c StartWebAppLAN.bat", 0, False
 
-' Wait a few seconds for the server to start
-WScript.Sleep 5000
+' --- Check if Streamlit is already running ---
+Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+Set colItems = objWMIService.ExecQuery("Select * from Win32_Process Where Name='python.exe' OR Name='streamlit.exe'")
 
-Set objShell = CreateObject("WScript.Shell")
+isRunning = False
+For Each objItem In colItems
+    If InStr(LCase(objItem.CommandLine), "streamlit") > 0 Then
+        isRunning = True
+        Exit For
+    End If
+Next
 
-' Find local IP
-Set execObj = objShell.Exec("cmd /c for /f ""tokens=2 delims=: "" %A in ('ipconfig ^| findstr IPv4') do @echo %A")
-Do While execObj.Status = 0
-    WScript.Sleep 100
+' --- If not running, start it silently ---
+If Not isRunning Then
+    WshShell.Run "cmd /c StartWebAppLAN.bat", 0, False
+    WScript.Sleep 6000 ' wait for server startup
+End If
+
+' --- Get local IP (prefer 192.168.x.x or 10.x.x.x) ---
+Set execObj = WshShell.Exec("cmd /c ipconfig | findstr /R ""IPv4""")
+ip = ""
+Do Until execObj.StdOut.AtEndOfStream
+    line = execObj.StdOut.ReadLine
+    If InStr(line, "192.168.") > 0 Or InStr(line, "10.") > 0 Then
+        parts = Split(line, ":")
+        ip = Trim(parts(1))
+        Exit Do
+    End If
 Loop
 
-ip = Trim(execObj.StdOut.ReadAll)
+If ip = "" Then ip = "localhost"
+
+' --- Open browser ---
 url = "http://" & ip & ":8501"
-objShell.Run url
+WshShell.Run url
