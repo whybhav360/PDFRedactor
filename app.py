@@ -7,11 +7,11 @@ import io
 import platform
 import re
 
-# -------------------- Tesseract setup --------------------
-if platform.system() == "Windows":
-    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-else:
-    pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"
+# # -------------------- Tesseract setup --------------------
+# if platform.system() == "Windows":
+#     pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# else:
+#     pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"
 
 
 # -------------------- OCR WITH BOUNDING BOXES --------------------
