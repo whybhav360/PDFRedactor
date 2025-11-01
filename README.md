@@ -32,22 +32,6 @@ Real-time progress bar for large PDFs
 
 Download the final redacted PDF directly from the browser
 
-🛠️ Tech Stack
-Component	Purpose
-Python 3.8+	Core language
-Streamlit	Web app interface
-PyMuPDF (fitz)	PDF manipulation and redaction
-Pillow (PIL)	Image handling
-Tesseract OCR	Optical Character Recognition
-pytesseract	Python wrapper for Tesseract
-📂 Project Structure
-pdf-redactor/
-│
-├── app.py              # Main Streamlit app
-├── requirements.txt    # Python dependencies
-├── StartWebAppLAN.bat  # Local server startup script
-├── LaunchWebApp.vbs    # Silent desktop launcher
-└── README.md           # Documentation
 
 ⚙️ Installation & Setup
 1. Clone the Repository
@@ -197,3 +181,4 @@ Vibe coded with a lot of bug smashing by yours truly,
 
 Vaibhav Madaan
 (Look me up on linkedin)
+
